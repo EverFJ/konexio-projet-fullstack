@@ -23,11 +23,11 @@ $(function () {
             $.ajax({
                 url: 'http://localhost:8000/' + countryName,
                 success: function (data, statuts, response) {
-                    let country = Object.entries(data[0]);
+                    let country = data;
                     for (let i = 0; i < country.length; i++) {
                         listContent += `<li class="list-group-item bg-light">${country[i]}</li>`
                     }
-                    list.html(listContent)
+                    list.html(data)
                 }
             });
         })

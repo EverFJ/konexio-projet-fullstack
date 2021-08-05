@@ -20,7 +20,7 @@ app.get("/:country", cors(), (req, res) => {
     console.log(result);
     result = JSON.stringify(result)
     
-    res.send(result);
+    res.send(result)
 })
 
 app.listen(port, () => {
