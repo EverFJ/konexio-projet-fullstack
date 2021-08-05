@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     let countries = [];
     const list = $("#countries");
     let listContent = "";
@@ -17,4 +17,18 @@ $(function() {
             })
     }
     getAllCountries()
+    $("#btnShowData").click(
+        function () {
+            const countryName = $("#inputCountry").val();
+            $.ajax({
+                url: 'http://localhost:8000/' + countryName,
+                success: function (data, statuts, response) {
+                    let country = Object.entries(data[0]);
+                    for (let i = 0; i < country.length; i++) {
+                        listContent += `<li class="list-group-item bg-light">${country[i]}</li>`
+                    }
+                    list.html(listContent)
+                }
+            });
+        })
 })

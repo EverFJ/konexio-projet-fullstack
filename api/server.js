@@ -14,6 +14,15 @@ app.get("/all", cors(), (req, res) => {
     // res.send("test")
 })
 
+app.get("/:country", cors(), (req, res) => {
+    let country = req.params.country;
+    let result = countries.filter(element => element.name == country);
+    console.log(result);
+    result = JSON.stringify(result)
+    
+    res.send(result);
+})
+
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
 })
