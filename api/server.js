@@ -17,7 +17,7 @@ app.get("/all", cors(), (req, res) => {
 app.get("/:country", cors(), (req, res) => {
     let country = req.params.country;
     let result = countries.filter(element => element.name == country);
-    console.log(result);
+    // console.log(result);
     result = JSON.stringify(result)
     
     res.send(result)
