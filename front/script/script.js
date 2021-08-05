@@ -11,7 +11,7 @@ $(function() {
                 console.log("fetch works")
                 countries = data;
                 for (let i = 0; i < countries.length; i++) {
-                    listContent += `<li>${countries[i]}</li>`
+                    listContent += `<li class="list-group-item bg-light">${countries[i]}</li>`
                 }
                 list.html(listContent)
             })
