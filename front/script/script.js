@@ -8,7 +8,7 @@ $(function () {
         fetch("http://localhost:8000/all")
             .then(response => response.json())
             .then(data => {
-                console.log("fetch works")
+                // console.log("fetch works")
                 countries = data;
                 for (let i = 0; i < countries.length; i++) {
                     listContent += `<li class="list-group-item bg-light">${countries[i]}</li>`
@@ -23,11 +23,16 @@ $(function () {
             $.ajax({
                 url: 'http://localhost:8000/' + countryName,
                 success: function (data, statuts, response) {
-                    let country = data;
-                    for (let i = 0; i < country.length; i++) {
-                        listContent += `<li class="list-group-item bg-light">${country[i]}</li>`
-                    }
-                    list.html(data)
+                    let country = JSON.parse(data)[0];
+                    console.log(country);
+                    listContent = `<li class="list-group-item bg-light">name : ${country.name}</li>
+                    <li class="list-group-item bg-light">capital : ${country.capital}</li>
+                    <li class="list-group-item bg-light">region : ${country.region}</li>
+                    `;
+                    // for (let i = 0; i < country.length; i++) {
+                    //     listContent += `<li class="list-group-item bg-light">${country[i]}</li>`
+                    // }
+                    list.html(listContent)
                 }
             });
         })
