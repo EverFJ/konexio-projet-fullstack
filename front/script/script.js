@@ -1,4 +1,4 @@
-$(function () {
+$(function() {
     let countries = [];
     const list = $("#countries");
     let listContent = "";
@@ -18,7 +18,7 @@ $(function () {
     }
     getAllCountries()
     $("#btnShowData").click(
-        function () {
+        function() {
             const countryName = $("#inputCountry").val();
 
             function capitalizeFirstLetter(string) {
@@ -28,16 +28,20 @@ $(function () {
             const result = capitalizeFirstLetter(countryName);
             // console.log(result);
             $.ajax({
-                url: 'http://localhost:8000/' + result,
-                success: function (data, statuts, response) {
-                    let country = JSON.parse(data)[0];
-                    listContent = `<li class="list-group-item bg-light text-center">name : ${country.name}</li>
-                    <li class="list-group-item bg-light text-center">capital : ${country.capital}</li>
-                    <li class="list-group-item bg-light text-center">region : ${country.region}</li>
-                    `;
-                    // for (let i = 0; i < country.length; i++) {
-                    //     listContent += `<li class="list-group-item bg-light">${country[i]}</li>`
-                    // }
+                url: 'http://localhost:8000/' + countryName,
+                success: function(data, statuts, response) {
+                    console.log(data[0])
+                    const countryProperties = Object.entries(data[0]);
+                    console.log(countryProperties);
+
+                    // listContent = `<li class="list-group-item bg-light">name : ${data[0].name}</li>
+                    // <li class="list-group-item bg-light">capital : ${data[0].capital}</li>
+                    // <li class="list-group-item bg-light">region : ${data[0].region}</li>`;
+
+                    listContent = "";
+                    for (let i = 0; i < countryProperties.length; i++) {
+                        listContent += `<li class="list-group-item bg-light">${countryProperties[i].join(" : ")}</li>`
+                    }
                     list.html(listContent)
                 }
             });
